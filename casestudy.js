@@ -1,10 +1,10 @@
 // A list of our parameters as variables
 let price = 25;
-let driverPay = 22;
+let driverPay = 20;
 let newDrivers = 10;
 let driverCAC = 500;
-let matchRate = .93;
-let churnRate = .1;
+let matchRate = .73;
+let churnRate = .23;
 let newCustomers = 30;
 let customerCAC = 15;
 
@@ -15,9 +15,9 @@ let monthlyGross = [];
 let monthlyNet = [];
 
 // Active users will change each month | Creates an array and sets a value for the first month
-let monthlyCustomers = [];
+let activeRiders = [];
 let month1 = 3000;
-monthlyCustomers.push(month1);
+activeRiders.push(month1);
 
 // Operating expenses will change each month | Creates an array
 let opEx = [];
@@ -25,7 +25,7 @@ let opEx = [];
 // For loop iterates each month of customer loss and gross revenue over 12 months
 for (let i = 1; i < 13; i++) {
     // totalRiders represents the number of riders requesting rides each month
-    let totalRiders = monthlyCustomers[i-1];
+    let totalRiders = activeRiders[i-1];
 
     // noRide represents the customers experiencing an "Failed to find driver" event
     // No ride customers = (Active customers - (Active customers * Match rate))
@@ -59,12 +59,12 @@ for (let i = 1; i < 13; i++) {
     let netRevenue = grossRevenue - monthEx;
     
     opEx.push(monthEx);
-    monthlyCustomers.push(updatedTotalRiders);
+    activeRiders.push(updatedTotalRiders);
     monthlyGross.push(grossRevenue);
     monthlyNet.push(netRevenue);
 }
 // Round our answers to whole numbers
-monthlyCustomers = monthlyCustomers.map(function(each_element) {
+activeRiders = activeRiders.map(function(each_element) {
     return Number(each_element.toFixed(0));
 });
 monthlyGross = monthlyGross.map(function(each_element) {
@@ -77,11 +77,11 @@ monthlyNet = monthlyNet.map(function(each_element) {
     return Number(each_element.toFixed(0));
 });
 
-// Remove the 13th month from our monthlyCustomers array
-monthlyCustomers.splice(-1);
+// Remove the 13th month from our activeRiders array
+activeRiders.splice(-1);
 
 // Display our results
-console.table(monthlyCustomers);
+console.table(activeRiders);
 console.table(monthlyGross);
 console.table(opEx);
 console.table(monthlyNet);
