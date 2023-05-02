@@ -1,10 +1,10 @@
 // A list of our parameters as variables
 let price = 25;
-let driverPay = 20;
+let driverPay = 21;
 let newDrivers = 10;
 let driverCAC = 500;
-let matchRate = .73;
-let churnRate = .23;
+let matchRate = .8;
+let churnRate = .18;
 let newCustomers = 30;
 let customerCAC = 15;
 
